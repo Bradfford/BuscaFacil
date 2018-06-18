@@ -3,10 +3,12 @@ package buscafacil.com.br.buscafacil.presenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import buscafacil.com.br.buscafacil.model.RO.ChildrenOffer;
-import buscafacil.com.br.buscafacil.model.RO.OffersRO;
-import buscafacil.com.br.buscafacil.model.RO.ProductOfferRO;
-import buscafacil.com.br.buscafacil.model.Service.RequestAPI;
+import buscafacil.com.br.buscafacil.model.ro.offersRO.ChildrenOffer;
+import buscafacil.com.br.buscafacil.model.ro.offersRO.OffersRO;
+import buscafacil.com.br.buscafacil.model.ro.offersRO.ProductOfferRO;
+import buscafacil.com.br.buscafacil.model.service.RequestAPI;
+import buscafacil.com.br.buscafacil.presenter.po.offersPO.ProductDetailsPLObject;
+import buscafacil.com.br.buscafacil.presenter.po.offersPO.ProductOfferOfTheDayPLObject;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;

@@ -1,17 +1,15 @@
 package buscafacil.com.br.buscafacil.presenter;
 
 
-import android.view.Menu;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import buscafacil.com.br.buscafacil.model.RO.AllDepartmentsResponse;
-import buscafacil.com.br.buscafacil.model.RO.ChildrenResponse;
-import buscafacil.com.br.buscafacil.model.RO.DepartmentRO;
-import buscafacil.com.br.buscafacil.model.RO.DepartmentResponse;
-import buscafacil.com.br.buscafacil.model.RO.MenuResponse;
-import buscafacil.com.br.buscafacil.model.Service.RequestAPI;
+import buscafacil.com.br.buscafacil.model.ro.departamentsRO.Category;
+import buscafacil.com.br.buscafacil.model.ro.departamentsRO.DepartmentRO;
+import buscafacil.com.br.buscafacil.model.ro.departamentsRO.Subcategory;
+import buscafacil.com.br.buscafacil.model.service.RequestAPI;
+import buscafacil.com.br.buscafacil.presenter.po.departmentsPO.DepartmentPLObject;
+import buscafacil.com.br.buscafacil.presenter.po.departmentsPO.SubcategoryPLObject;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -20,7 +18,7 @@ import io.reactivex.disposables.Disposable;
 public class DepartmentPresenterLayer {
 
     private List<DepartmentPLObject> departmentsPLObject;
-    private Observer<DepartmentRO> departmentROObserver;
+    protected Observer<DepartmentRO> departmentROObserver;
     private Observable<List<DepartmentPLObject>> departmentListObservable;
     private Observer<List<DepartmentPLObject>> departmentListObserver;
     private RequestAPI requestAPI;
@@ -54,19 +52,25 @@ public class DepartmentPresenterLayer {
             }
         };
         requestAPI = new RequestAPI(departmentROObserver, null, null);
-        requestAPI.requestGetCategories(Utils.getSpaceyApiDomain());
+        requestAPI.requestGetAllDepartments(Utils.getMystiqueDomain());
     }
 
     private void buildObject(DepartmentRO departmentRO){
         departmentsPLObject = new ArrayList<>();
 
-        for(AllDepartmentsResponse allDepartmentsResponse : departmentRO.getMenuResponse().getComponentResponse().
-                getChildrensResponse().get(1).getDepartmentsResponse().get(0).getAllDepartments()){
+        for(Category category : departmentRO.getAggregations().get(0).getCategories()){
             DepartmentPLObject departmentPLObject = new DepartmentPLObject();
-            departmentPLObject.setId(allDepartmentsResponse.getId());
-            departmentPLObject.setTitle(allDepartmentsResponse.getTitle());
-            departmentPLObject.setLink(allDepartmentsResponse.getLink());
-
+            departmentPLObject.setTitle(category.getTitle());
+            if (!category.getSubcategories().isEmpty()){
+                List<SubcategoryPLObject> subcategoryPLObjectList = new ArrayList<>();
+                for(Subcategory sc : category.getSubcategories()){
+                    SubcategoryPLObject subcategoryPLObject = new SubcategoryPLObject();
+                    subcategoryPLObject.setTitle(sc.getTitle());
+                    subcategoryPLObject.setSearchLink(sc.getSearchValueLink().getSelf().getHref());
+                    subcategoryPLObjectList.add(subcategoryPLObject);
+                }
+                departmentPLObject.setSubcategoryPLObjectList(subcategoryPLObjectList);
+            }
             departmentsPLObject.add(departmentPLObject);
         }
         departmentListObservable = Observable.just(departmentsPLObject);

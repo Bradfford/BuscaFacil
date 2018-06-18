@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import buscafacil.com.br.buscafacil.R;
-import buscafacil.com.br.buscafacil.view.Category.CategoryAdapter;
+import buscafacil.com.br.buscafacil.view.department.DepartmentAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.categories_recycle)
     RecyclerView recyclerView;
 
-    private CategoryAdapter categoryAdapter;
+    private DepartmentAdapter departmentAdapter;
 
     private boolean hasCategoriesItemSelected = true;
 
@@ -52,8 +52,8 @@ public class HomeFragment extends Fragment {
 //    public void setupCategories(List<CategoryPL> categories){
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
 //        recyclerView.setLayoutManager(linearLayoutManager);
-//        categoryAdapter = new CategoryAdapter(this.getContext(), categories);
-//        recyclerView.setAdapter(categoryAdapter);
+//        departmentAdapter = new DepartmentAdapter(this.getContext(), categories);
+//        recyclerView.setAdapter(departmentAdapter);
 //        recyclerView.addItemDecoration(
 //                new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL));
 //    }

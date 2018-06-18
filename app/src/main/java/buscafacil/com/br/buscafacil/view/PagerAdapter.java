@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import buscafacil.com.br.buscafacil.view.Category.CategoriesFragment;
-import buscafacil.com.br.buscafacil.view.Fetaured.FeaturedFragment;
+import buscafacil.com.br.buscafacil.view.department.DepartmentFragment;
+import buscafacil.com.br.buscafacil.view.offersOfTheDay.OffersOfTheDayFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
@@ -21,11 +21,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position){
             case 0:
-                CategoriesFragment categoriesFragment = new CategoriesFragment();
+                DepartmentFragment categoriesFragment = new DepartmentFragment();
                 return categoriesFragment;
             case 1:
-                FeaturedFragment featuredFragment = new FeaturedFragment();
-                return featuredFragment;
+                OffersOfTheDayFragment offersOfTheDayFragment = new OffersOfTheDayFragment();
+                return offersOfTheDayFragment;
             default:
                 return null;
         }

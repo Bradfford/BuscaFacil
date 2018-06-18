@@ -3,7 +3,6 @@
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/show_subcategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -11,16 +10,17 @@
         android:clickable="true">
 
         <TextView
-            android:id="@+id/category_item_text"
+            android:id="@+id/subcategory_item_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="category name"
+            android:text="subcategory name"
             android:layout_margin="15dp"
             android:textSize="15dp"
             android:layout_weight="1"
             android:layout_gravity="center"/>
 
         <ImageView
+            android:id="@+id/show_subcategories_products"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_margin="15dp"
